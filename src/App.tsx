@@ -11,16 +11,15 @@ import {
   // TransactionsTracker
 } from 'components';
 
-import {
-  apiTimeout,
-  walletConnectV2ProjectId,
-  environment,
-  sampleAuthenticatedDomains
-} from 'config';
+import { apiTimeout, environment, sampleAuthenticatedDomains } from 'config';
 import { RouteNamesEnum } from 'localConstants';
 import { PageNotFound, Unlock } from 'pages';
 import { routes } from 'routes';
 import { BatchTransactionsContextProvider } from 'wrappers';
+
+const walletConnectV2ProjectId = process.env.VITE_APP_PROJECT_ID;
+const walletConnectV2RelayAddresses = [process.env.VITE_APP_RELAY_URL];
+const walletConnectDeepLink = process.env.VITE_APP_DEEPLINK_URL ?? '';
 
 const AppContent = () => {
   return (
@@ -29,7 +28,12 @@ const AppContent = () => {
       customNetworkConfig={{
         name: 'customConfig',
         apiTimeout,
-        walletConnectV2ProjectId
+        walletConnectV2ProjectId,
+        walletConnectV2RelayAddresses,
+        walletConnectDeepLink,
+        walletConnectV2Options: {
+          logger: 'debug'
+        }
       }}
       dappConfig={{
         shouldUseWebViewProvider: true,

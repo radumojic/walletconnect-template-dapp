@@ -135,7 +135,6 @@ export const BatchTransactions = () => {
         <Button
           data-testid='sign-auto-send'
           onClick={signAndAutoSendBatchTransactions}
-          disabled={hasPendingTransactions}
         >
           <FontAwesomeIcon icon={faPaperPlane} className='mr-1' />
           Sign & send batch
@@ -143,7 +142,6 @@ export const BatchTransactions = () => {
         <Button
           data-testid='send-transactions'
           onClick={executeBatchTransactions}
-          disabled={hasPendingTransactions}
         >
           <FontAwesomeIcon icon={faPaperPlane} className='mr-1' />
           Sign batch & controlled sending
@@ -152,7 +150,6 @@ export const BatchTransactions = () => {
         <Button
           data-testid='swap-lock'
           onClick={executeSwapAndLockTransactions}
-          disabled={hasPendingTransactions}
         >
           <FontAwesomeIcon icon={faArrowsRotate} className='mr-1' />
           Swap & Lock

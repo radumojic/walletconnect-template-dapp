@@ -9,7 +9,11 @@ import {
   BatchTransactions,
   PingPongRaw,
   PingPongService,
-  Transactions
+  Transactions,
+  BalanceTransaction,
+  SingleTransaction,
+  MultipleTransactions,
+  WalletConnectPing
 } from './widgets';
 
 type WidgetsType = {
@@ -26,6 +30,58 @@ const WIDGETS: WidgetsType[] = [
     widget: Account,
     description: 'Connected account details',
     reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+  {
+    title: 'Balance Transaction',
+    widget: BalanceTransaction,
+    description: 'Balance Transaction',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+  {
+    title: 'Single Transaction',
+    widget: SingleTransaction,
+    description: 'Single Transaction',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+  {
+    title: 'Multiple Transactions',
+    widget: MultipleTransactions,
+    description: 'Multiple Transactions',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+  {
+    title: 'Sign message',
+    widget: SignMessage,
+    description: 'Message signing using the connected account',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account-1'
+  },
+  {
+    title: 'WalletConnect Ping',
+    widget: WalletConnectPing,
+    description: 'WalletConnect Ping',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+  {
+    title: 'Native auth',
+    widget: NativeAuth,
+    description:
+      'A secure authentication token can be used to interact with the backend',
+    reference: 'https://github.com/multiversx/mx-sdk-js-native-auth-server'
+  },
+  {
+    title: 'Batch Transactions',
+    widget: BatchTransactions,
+    description:
+      'For complex scenarios transactions can be sent in the desired group/sequence',
+    reference:
+      'https://github.com/multiversx/mx-sdk-dapp#sending-transactions-synchronously-in-batches'
+  },
+  {
+    title: 'Transactions (All)',
+    widget: Transactions,
+    description: 'List transactions for the connected account',
+    reference:
+      'https://api.elrond.com/#/accounts/AccountController_getAccountTransactions'
   },
   {
     title: 'Ping & Pong (Manual)',
@@ -50,34 +106,7 @@ const WIDGETS: WidgetsType[] = [
       'Smart Contract interactions using the backend generated transactions',
     reference: 'https://github.com/multiversx/mx-ping-pong-service'
   },
-  {
-    title: 'Sign message',
-    widget: SignMessage,
-    description: 'Message signing using the connected account',
-    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account-1'
-  },
-  {
-    title: 'Native auth',
-    widget: NativeAuth,
-    description:
-      'A secure authentication token can be used to interact with the backend',
-    reference: 'https://github.com/multiversx/mx-sdk-js-native-auth-server'
-  },
-  {
-    title: 'Batch Transactions',
-    widget: BatchTransactions,
-    description:
-      'For complex scenarios transactions can be sent in the desired group/sequence',
-    reference:
-      'https://github.com/multiversx/mx-sdk-dapp#sending-transactions-synchronously-in-batches'
-  },
-  {
-    title: 'Transactions (All)',
-    widget: Transactions,
-    description: 'List transactions for the connected account',
-    reference:
-      'https://api.elrond.com/#/accounts/AccountController_getAccountTransactions'
-  },
+
   {
     title: 'Transactions (Ping & Pong)',
     widget: Transactions,

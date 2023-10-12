@@ -12,7 +12,6 @@ import {
   WalletConnectLoginButton,
   WebWalletLoginButton
 } from 'components/sdkDappComponents';
-import { nativeAuth } from 'config';
 import { RouteNamesEnum } from 'localConstants';
 import { AuthRedirectWrapper } from 'wrappers';
 
@@ -23,9 +22,16 @@ type CommonPropsType =
   | LedgerLoginButtonPropsType
   | WalletConnectLoginButtonPropsType;
 
+const hasNativeAuth =
+  process.env.REACT_APP_NATIVE_AUTH !== undefined
+    ? process.env.REACT_APP_NATIVE_AUTH === 'true'
+    : true;
+const loginToken = process.env.REACT_APP_LOGIN_TOKEN ?? '';
+
 const commonProps: CommonPropsType = {
   callbackRoute: RouteNamesEnum.dashboard,
-  nativeAuth
+  ...(hasNativeAuth ? { nativeAuth: true } : {}),
+  ...(loginToken ? { token: loginToken } : {})
 };
 
 export const Unlock = () => {
