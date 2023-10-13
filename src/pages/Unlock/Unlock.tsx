@@ -23,10 +23,10 @@ type CommonPropsType =
   | WalletConnectLoginButtonPropsType;
 
 const hasNativeAuth =
-  process.env.REACT_APP_NATIVE_AUTH !== undefined
-    ? process.env.REACT_APP_NATIVE_AUTH === 'true'
+  process.env.VITE_APP_NATIVE_AUTH !== undefined
+    ? process.env.VITE_APP_NATIVE_AUTH === 'true'
     : true;
-const loginToken = process.env.REACT_APP_LOGIN_TOKEN ?? '';
+const loginToken = process.env.VITE_APP_LOGIN_TOKEN ?? '';
 
 const commonProps: CommonPropsType = {
   callbackRoute: RouteNamesEnum.dashboard,
