@@ -33,7 +33,7 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className='h-4/6 bg-mvx-white bg-contain bg-center bg-no-repeat w-1/2' />
+          <div className='h-4/6 bg-mvx-white bg-contain bg-no-repeat w-1/2 bg-center' />
         </div>
       </PageWrapper>
     </AuthRedirectWrapper>

@@ -33,8 +33,7 @@ const AppContent = () => {
         walletConnectDeepLink,
         walletConnectV2Options: {
           logger: 'debug'
-        },
-        walletAddress: 'https://next-wallet.multiversx.com'
+        }
       }}
       dappConfig={{
         shouldUseWebViewProvider: true,
