@@ -5,10 +5,10 @@ import {
   Account,
   PingPongAbi,
   SignMessage,
-  NativeAuth,
-  BatchTransactions,
-  PingPongRaw,
-  Transactions,
+  //NativeAuth,
+  // BatchTransactions,
+  // PingPongRaw,
+  // Transactions,
   BalanceTransaction,
   SingleTransaction,
   MultipleTransactions,
@@ -59,53 +59,53 @@ const WIDGETS: WidgetsType[] = [
     widget: WalletConnectPing,
     description: 'WalletConnect Ping',
     reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
-  },
-  {
-    title: 'Native auth',
-    widget: NativeAuth,
-    description:
-      'A secure authentication token can be used to interact with the backend',
-    reference: 'https://github.com/multiversx/mx-sdk-js-native-auth-server'
-  },
-  {
-    title: 'Batch Transactions',
-    widget: BatchTransactions,
-    description:
-      'For complex scenarios transactions can be sent in the desired group/sequence',
-    reference:
-      'https://github.com/multiversx/mx-sdk-dapp#sending-transactions-synchronously-in-batches'
-  },
-  {
-    title: 'Transactions (All)',
-    widget: Transactions,
-    description: 'List transactions for the connected account',
-    reference:
-      'https://api.elrond.com/#/accounts/AccountController_getAccountTransactions'
-  },
-  {
-    title: 'Ping & Pong (Manual)',
-    widget: PingPongRaw,
-    description:
-      'Smart Contract interactions using manually formulated transactions',
-    reference:
-      'https://docs.multiversx.com/sdk-and-tools/indices/es-index-transactions/'
-  },
-  {
-    title: 'Ping & Pong (ABI)',
-    widget: PingPongAbi,
-    description:
-      'Smart Contract interactions using the ABI generated transactions',
-    reference:
-      'https://docs.multiversx.com/sdk-and-tools/sdk-js/sdk-js-cookbook/#using-interaction-when-the-abi-is-available'
-  },
-  {
-    title: 'Transactions (Ping & Pong)',
-    widget: Transactions,
-    props: { receiver: contractAddress },
-    description: 'List transactions filtered for a given Smart Contract',
-    reference:
-      'https://api.elrond.com/#/accounts/AccountController_getAccountTransactions'
   }
+  // {
+  //   title: 'Native auth',
+  //   widget: NativeAuth,
+  //   description:
+  //     'A secure authentication token can be used to interact with the backend',
+  //   reference: 'https://github.com/multiversx/mx-sdk-js-native-auth-server'
+  // },
+  // {
+  //   title: 'Batch Transactions',
+  //   widget: BatchTransactions,
+  //   description:
+  //     'For complex scenarios transactions can be sent in the desired group/sequence',
+  //   reference:
+  //     'https://github.com/multiversx/mx-sdk-dapp#sending-transactions-synchronously-in-batches'
+  // },
+  // {
+  //   title: 'Transactions (All)',
+  //   widget: Transactions,
+  //   description: 'List transactions for the connected account',
+  //   reference:
+  //     'https://api.elrond.com/#/accounts/AccountController_getAccountTransactions'
+  // },
+  // {
+  //   title: 'Ping & Pong (Manual)',
+  //   widget: PingPongRaw,
+  //   description:
+  //     'Smart Contract interactions using manually formulated transactions',
+  //   reference:
+  //     'https://docs.multiversx.com/sdk-and-tools/indices/es-index-transactions/'
+  // },
+  // {
+  //   title: 'Ping & Pong (ABI)',
+  //   widget: PingPongAbi,
+  //   description:
+  //     'Smart Contract interactions using the ABI generated transactions',
+  //   reference:
+  //     'https://docs.multiversx.com/sdk-and-tools/sdk-js/sdk-js-cookbook/#using-interaction-when-the-abi-is-available'
+  // },
+  // {
+  //   title: 'Transactions (Ping & Pong)',
+  //   widget: Transactions,
+  //   props: { receiver: contractAddress },
+  //   description: 'List transactions filtered for a given Smart Contract',
+  //   reference:
+  //     'https://api.elrond.com/#/accounts/AccountController_getAccountTransactions'
+  // }
 ];
 
 export const Dashboard = () => (

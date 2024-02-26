@@ -39,20 +39,20 @@ const AppContent = () => {
         shouldUseWebViewProvider: true,
         logoutRoute: RouteNamesEnum.unlock
       }}
-      customComponents={{
-        transactionTracker: {
-          // uncomment this to use the custom transaction tracker
-          // component: TransactionsTracker,
-          props: {
-            onSuccess: (sessionId: string) => {
-              console.log(`Session ${sessionId} successfully completed`);
-            },
-            onFail: (sessionId: string, errorMessage: string) => {
-              console.log(`Session ${sessionId} failed. ${errorMessage ?? ''}`);
-            }
-          }
-        }
-      }}
+      // customComponents={{
+      //   transactionTracker: {
+      //     // uncomment this to use the custom transaction tracker
+      //     // component: TransactionsTracker,
+      //     props: {
+      //       onSuccess: (sessionId: string) => {
+      //         console.log(`Session ${sessionId} successfully completed`);
+      //       },
+      //       onFail: (sessionId: string, errorMessage: string) => {
+      //         console.log(`Session ${sessionId} failed. ${errorMessage ?? ''}`);
+      //       }
+      //     }
+      //   }
+      // }}
     >
       <AxiosInterceptorContext.Listener>
         <Layout>
@@ -79,9 +79,7 @@ const AppContent = () => {
 export const App = () => {
   return (
     <AxiosInterceptorContext.Provider>
-      <AxiosInterceptorContext.Interceptor
-        authenticatedDomains={sampleAuthenticatedDomains}
-      >
+      <AxiosInterceptorContext.Interceptor authenticatedDomains={[]}>
         <Router>
           <BatchTransactionsContextProvider>
             <AppContent />
