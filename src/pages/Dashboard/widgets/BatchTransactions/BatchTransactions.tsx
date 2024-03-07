@@ -147,13 +147,13 @@ export const BatchTransactions = () => {
           Sign batch & controlled sending
         </Button>
 
-        <Button
+        {/* <Button
           data-testid='swap-lock'
           onClick={executeSwapAndLockTransactions}
         >
           <FontAwesomeIcon icon={faArrowsRotate} className='mr-1' />
           Swap & Lock
-        </Button>
+        </Button> */}
       </div>
 
       <OutputContainer>

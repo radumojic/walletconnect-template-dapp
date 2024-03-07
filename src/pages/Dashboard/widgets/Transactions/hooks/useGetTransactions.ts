@@ -22,7 +22,6 @@ export const useGetTransactions = (payload?: TransactionsPropsType) => {
       const { data } = await getTransactions({
         apiAddress,
         sender: address,
-        condition: 'must',
         transactionSize,
         apiTimeout,
         ...(payload ?? {})

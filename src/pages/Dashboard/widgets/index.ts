@@ -10,4 +10,5 @@ export * from './PingPongService';
 export * from './BalanceTransaction';
 export * from './SingleTransaction';
 export * from './MultipleTransactions';
+export * from './LargeMultipleTransactions';
 export * from './WalletConnectPing';

@@ -3,15 +3,16 @@ import { contractAddress } from 'config';
 import { AuthRedirectWrapper } from 'wrappers';
 import {
   Account,
-  PingPongAbi,
+  //PingPongAbi,
   SignMessage,
-  //NativeAuth,
-  // BatchTransactions,
+  // NativeAuth,
   // PingPongRaw,
-  // Transactions,
+  Transactions,
+  BatchTransactions,
   BalanceTransaction,
   SingleTransaction,
   MultipleTransactions,
+  LargeMultipleTransactions,
   WalletConnectPing
 } from './widgets';
 
@@ -49,6 +50,12 @@ const WIDGETS: WidgetsType[] = [
     reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
   },
   {
+    title: '(Large) Multiple Transactions',
+    widget: LargeMultipleTransactions,
+    description: '(Large) Multiple Transactions',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+  {
     title: 'Sign message',
     widget: SignMessage,
     description: 'Message signing using the connected account',
@@ -59,6 +66,21 @@ const WIDGETS: WidgetsType[] = [
     widget: WalletConnectPing,
     description: 'WalletConnect Ping',
     reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+  {
+    title: 'Batch Transactions',
+    widget: BatchTransactions,
+    description:
+      'For complex scenarios transactions can be sent in the desired group/sequence',
+    reference:
+      'https://github.com/multiversx/mx-sdk-dapp#sending-transactions-synchronously-in-batches'
+  },
+  {
+    title: 'Transactions (All)',
+    widget: Transactions,
+    description: 'List transactions for the connected account',
+    reference:
+      'https:api.elrond.com/#/accounts/AccountController_getAccountTransactions'
   }
   // {
   //   title: 'Native auth',
@@ -74,13 +96,6 @@ const WIDGETS: WidgetsType[] = [
   //     'For complex scenarios transactions can be sent in the desired group/sequence',
   //   reference:
   //     'https://github.com/multiversx/mx-sdk-dapp#sending-transactions-synchronously-in-batches'
-  // },
-  // {
-  //   title: 'Transactions (All)',
-  //   widget: Transactions,
-  //   description: 'List transactions for the connected account',
-  //   reference:
-  //     'https://api.elrond.com/#/accounts/AccountController_getAccountTransactions'
   // },
   // {
   //   title: 'Ping & Pong (Manual)',
