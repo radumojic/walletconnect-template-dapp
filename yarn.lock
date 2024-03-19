@@ -957,23 +957,10 @@
     keccak "3.0.2"
     protobufjs "7.2.4"
 
-"@multiversx/sdk-core@13.0.0-beta.6":
-  version "13.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-13.0.0-beta.6.tgz#802630c42a1c5271ec136f29f6930ee24dfd3d44"
-  integrity sha512-BIb8Dsi/2wN8lQev2eezEEfwLp9bAAlpk/I6RoJgiB6lvLKJn2Wfa3NU5bSwStA3qj45jxTAqQSXK6xD7bSELA==
-  dependencies:
-    "@multiversx/sdk-transaction-decoder" "1.0.2"
-    bech32 "1.1.4"
-    blake2b "2.1.3"
-    buffer "6.0.3"
-    json-bigint "1.0.0"
-    keccak "3.0.2"
-    protobufjs "7.2.4"
-
-"@multiversx/sdk-dapp@2.29.0-beta.8":
-  version "2.29.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.29.0-beta.8.tgz#4eb467ca3013e7557f28d3a75b2b8a4cf3a0e804"
-  integrity sha512-QhjxRA+gi5wg7vWfUD1q9Yqf4zNhnkPPbJtJbX2Q+STVVaHyIaj5mVJL8oxsp9nvFgICUlqIzDO55Gm9FN0Cqg==
+"@multiversx/sdk-dapp@2.29.0-beta.7":
+  version "2.29.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.29.0-beta.7.tgz#3620a9586cb929ef0db827c8ddafae64b1c3df1a"
+  integrity sha512-uf9PzuMS8GfVXaMfGqpOv68GDgdnhP+ywL7LnJ4B5Xdv+OnT62eEDbRuXS5XUyGE0TkHPYa/EqXM+6PU6tO+9Q==
   dependencies:
     "@lifeomic/axios-fetch" "3.0.1"
     "@multiversx/sdk-core" "13.0.0-beta.4"

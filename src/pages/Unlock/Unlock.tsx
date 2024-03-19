@@ -10,11 +10,15 @@ import {
   LedgerLoginButton,
   OperaWalletLoginButton,
   WalletConnectLoginButton,
-  WebWalletLoginButton,
-  XaliasLoginButton
+  WebWalletLoginButton as WebWalletUrlLoginButton,
+  XaliasLoginButton,
+  CrossWindowLoginButton
 } from 'components/sdkDappComponents';
+import { nativeAuth } from 'config';
 import { RouteNamesEnum } from 'localConstants';
+import { useNavigate } from 'react-router-dom';
 import { AuthRedirectWrapper } from 'wrappers';
+import { WebWalletLoginWrapper, WebWalletLoginConfigEnum } from './components';
 
 type CommonPropsType =
   | OperaWalletLoginButtonPropsType
@@ -23,19 +27,23 @@ type CommonPropsType =
   | LedgerLoginButtonPropsType
   | WalletConnectLoginButtonPropsType;
 
-const hasNativeAuth =
-  process.env.VITE_APP_NATIVE_AUTH !== undefined
-    ? process.env.VITE_APP_NATIVE_AUTH === 'true'
-    : true;
-const loginToken = process.env.VITE_APP_LOGIN_TOKEN ?? '';
+// choose how you want to configure connecting to the web wallet
+const USE_WEB_WALLET_CROSS_WINDOW = true;
 
-const commonProps: CommonPropsType = {
-  callbackRoute: RouteNamesEnum.dashboard,
-  ...(hasNativeAuth ? { nativeAuth: true } : {}),
-  ...(loginToken ? { token: loginToken } : {})
-};
+const WebWalletLoginButton = USE_WEB_WALLET_CROSS_WINDOW
+  ? CrossWindowLoginButton
+  : WebWalletUrlLoginButton;
 
 export const Unlock = () => {
+  const navigate = useNavigate();
+  const commonProps: CommonPropsType = {
+    callbackRoute: RouteNamesEnum.dashboard,
+    nativeAuth,
+    onLoginRedirect: () => {
+      navigate(RouteNamesEnum.dashboard);
+    }
+  };
+
   return (
     <AuthRedirectWrapper requireAuth={false}>
       <div className='flex justify-center items-center'>
@@ -63,15 +71,15 @@ export const Unlock = () => {
               loginButtonText='Opera Crypto Wallet - Beta'
               {...commonProps}
             />
-            <WebWalletLoginButton
-              loginButtonText='Web Wallet'
-              data-testid='webWalletLoginBtn'
-              {...commonProps}
-            />
+
             <XaliasLoginButton
               loginButtonText='xAlias'
               data-testid='xAliasLoginBtn'
               {...commonProps}
+            />
+            <WebWalletLoginWrapper
+              {...commonProps}
+              config={['crossWindow', 'url']}
             />
           </div>
         </div>
