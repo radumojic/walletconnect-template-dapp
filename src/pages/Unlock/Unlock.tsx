@@ -14,7 +14,6 @@ import {
   XaliasLoginButton,
   CrossWindowLoginButton
 } from 'components/sdkDappComponents';
-import { nativeAuth } from 'config';
 import { RouteNamesEnum } from 'localConstants';
 import { useNavigate } from 'react-router-dom';
 import { AuthRedirectWrapper } from 'wrappers';
@@ -34,11 +33,19 @@ const WebWalletLoginButton = USE_WEB_WALLET_CROSS_WINDOW
   ? CrossWindowLoginButton
   : WebWalletUrlLoginButton;
 
+const hasNativeAuth =
+  process.env.VITE_APP_NATIVE_AUTH !== undefined
+    ? process.env.VITE_APP_NATIVE_AUTH === 'true'
+    : true;
+const loginToken = process.env.VITE_APP_LOGIN_TOKEN ?? '';
+
 export const Unlock = () => {
   const navigate = useNavigate();
+
   const commonProps: CommonPropsType = {
     callbackRoute: RouteNamesEnum.dashboard,
-    nativeAuth,
+    ...(hasNativeAuth ? { nativeAuth: true } : {}),
+    ...(loginToken ? { token: loginToken } : {}),
     onLoginRedirect: () => {
       navigate(RouteNamesEnum.dashboard);
     }
