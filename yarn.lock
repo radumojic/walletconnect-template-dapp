@@ -1073,10 +1073,10 @@
   resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp-utils/-/sdk-dapp-utils-0.0.1.tgz#ba8bd9319649d45dea9a76beca1e03d957dea2cb"
   integrity sha512-fl3TdES93Jc4T559BI+QxNRGRUTabb7TiAXHKL9g6mbLD+silK+5euAoDpPBkbZpVFnfsXQssUVuyKBV4Ine6w==
 
-"@multiversx/sdk-dapp@2.31.3-alpha.0":
-  version "2.31.3-alpha.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.31.3-alpha.0.tgz#1051f9aa3cde59541d6c945ea4f209a2d1a4aaae"
-  integrity sha512-L+J9jS9GS8WCMQUTDW3x/xoegK5IjEDBRJSq0nUVmDrRZgorf30+1b/gZn4NY9nde+bYgmFR7tpqDoVrmFofBw==
+"@multiversx/sdk-dapp@2.31.3-alpha.1":
+  version "2.31.3-alpha.1"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.31.3-alpha.1.tgz#312ef01a26412c64a1019d5dc55c528ef85b2a18"
+  integrity sha512-4hRBuitca2gB6Ro/Qa+6N+Q5yYCMEJxa2HRO/v6N0qKrrfNWGi+4W987CnAV8d1BUkWVTPjzWgEHcSL9LN5BUw==
   dependencies:
     "@lifeomic/axios-fetch" "3.0.1"
     "@metamask/providers" "16.0.0"
@@ -1090,7 +1090,7 @@
     "@multiversx/sdk-wallet-connect-provider" "4.1.2-alpha.0"
     "@multiversx/sdk-web-wallet-cross-window-provider" "0.0.37"
     "@multiversx/sdk-web-wallet-provider" "3.2.1"
-    "@multiversx/sdk-webview-provider" "0.0.6"
+    "@multiversx/sdk-webview-provider" "0.0.8"
     "@reduxjs/toolkit" "1.8.2"
     bignumber.js "9.x"
     linkify-react "4.0.2"
@@ -1218,10 +1218,10 @@
   dependencies:
     qs "6.10.3"
 
-"@multiversx/sdk-webview-provider@0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-webview-provider/-/sdk-webview-provider-0.0.6.tgz#aeb7fffb9ee4c533f196f5dd975578b94bffc320"
-  integrity sha512-JVz6tT8HFa4/XdbdHlj5wZoKnw/lnzD/Mt+F4rH2fvIq4TF59CHehq0Cc61w6zvucvNcI9jvBc0my5UFKkLxdw==
+"@multiversx/sdk-webview-provider@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-webview-provider/-/sdk-webview-provider-0.0.8.tgz#3524ee6a3d049172246a7b4e8e777aab2a669fea"
+  integrity sha512-usfJouOEkWz93Fx0NoUCdXit4TYyzUUL0sg+0HSqnNLlvcZ/Jw7i40Hidn5TEchuYLbVsQnidxKMfE6cPHnpNw==
 
 "@noble/curves@1.3.0", "@noble/curves@~1.3.0":
   version "1.3.0"
