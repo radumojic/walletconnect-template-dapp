@@ -11,8 +11,8 @@ import {
   OperaWalletLoginButton,
   WalletConnectLoginButton,
   WebWalletLoginButton as WebWalletUrlLoginButton,
-  XaliasLoginButton
-  //CrossWindowLoginButton
+  XaliasLoginButton,
+  CrossWindowLoginButton
 } from 'components/sdkDappComponents';
 import { RouteNamesEnum } from 'localConstants';
 import { useNavigate } from 'react-router-dom';
@@ -30,13 +30,8 @@ type CommonPropsType =
 const USE_WEB_WALLET_CROSS_WINDOW = true;
 
 const WebWalletLoginButton = USE_WEB_WALLET_CROSS_WINDOW
-  ? WebWalletUrlLoginButton
+  ? CrossWindowLoginButton
   : WebWalletUrlLoginButton;
-
-// todo - revert
-// const WebWalletLoginButton = USE_WEB_WALLET_CROSS_WINDOW
-//   ? CrossWindowLoginButton
-//   : WebWalletUrlLoginButton;
 
 const hasNativeAuth =
   process.env.VITE_APP_NATIVE_AUTH !== undefined

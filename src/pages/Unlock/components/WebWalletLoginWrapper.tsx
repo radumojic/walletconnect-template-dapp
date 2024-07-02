@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { WebWalletLoginButtonPropsType } from '@multiversx/sdk-dapp/UI/webWallet/WebWalletLoginButton/WebWalletLoginButton';
 import { useWebWalletLogin } from '@multiversx/sdk-dapp/hooks/login/useWebWalletLogin';
 import {
-  //CrossWindowLoginButton,
+  CrossWindowLoginButton,
   WebWalletLoginButton as WebWalletUrlLoginButton
 } from 'components/sdkDappComponents';
 
@@ -57,7 +57,7 @@ export const WebWalletLoginWrapper = ({
   if (hasBothOptions) {
     return (
       <div className='flex items-center'>
-        <WebWalletUrlLoginButton
+        <CrossWindowLoginButton
           loginButtonText='Web Wallet'
           data-testid='webWalletLoginBtn'
           className='!mr-0 !rounded-none !rounded-l-md'
@@ -135,7 +135,7 @@ export const WebWalletLoginWrapper = ({
   }
 
   return (
-    <WebWalletUrlLoginButton
+    <CrossWindowLoginButton
       loginButtonText='Web Wallet'
       data-testid='webWalletLoginBtn'
       {...commonProps}
