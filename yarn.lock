@@ -1064,10 +1064,10 @@
   resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp-utils/-/sdk-dapp-utils-0.0.1.tgz#ba8bd9319649d45dea9a76beca1e03d957dea2cb"
   integrity sha512-fl3TdES93Jc4T559BI+QxNRGRUTabb7TiAXHKL9g6mbLD+silK+5euAoDpPBkbZpVFnfsXQssUVuyKBV4Ine6w==
 
-"@multiversx/sdk-dapp@2.33.6-alpha.0":
-  version "2.33.6-alpha.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.33.6-alpha.0.tgz#cd952016417b349207dbbfc87877d361883ca7a6"
-  integrity sha512-Uz8sEU1vL9rxSu8M9+4olIBjcKjrfaJVVp635yqMhjlnEWQyZcLfqahxIPoXBMDLJ7fzoNZ4fJc8hgCGDH7ByA==
+"@multiversx/sdk-dapp@2.33.6":
+  version "2.33.6"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.33.6.tgz#b84e225c1615e958fd60f061dd423f22813b1f41"
+  integrity sha512-NR0yWmKASEkgK8xvTn+hyfg8S717z6fe1A2Vw5XLVBYPgAsEzH09Tpg0GxKDMIpwNjtOGHnaKb4wbbc3lU8DZg==
   dependencies:
     "@lifeomic/axios-fetch" "3.0.1"
     "@metamask/providers" "16.0.0"
@@ -1078,7 +1078,7 @@
     "@multiversx/sdk-native-auth-client" "1.0.7"
     "@multiversx/sdk-opera-provider" "1.0.0-alpha.1"
     "@multiversx/sdk-wallet" "4.2.0"
-    "@multiversx/sdk-wallet-connect-provider" "4.1.3-alpha.1"
+    "@multiversx/sdk-wallet-connect-provider" "4.1.3"
     "@multiversx/sdk-web-wallet-cross-window-provider" "0.2.0"
     "@multiversx/sdk-web-wallet-provider" "3.2.1"
     "@multiversx/sdk-webview-provider" "0.0.11"
@@ -1165,10 +1165,10 @@
   dependencies:
     bech32 "^2.0.0"
 
-"@multiversx/sdk-wallet-connect-provider@4.1.3-alpha.1":
-  version "4.1.3-alpha.1"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-wallet-connect-provider/-/sdk-wallet-connect-provider-4.1.3-alpha.1.tgz#66a43108649d23fde36fcdba23daa81b5cb1d15d"
-  integrity sha512-IbuYTY1JYcz4s1u0Ky+gX6IS9gKEz6PilPDnf/Yc/HyJ1aUGlvH1fqeEeL8hsCaLapn7QMNedUkqVpKriM7Gag==
+"@multiversx/sdk-wallet-connect-provider@4.1.3":
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-wallet-connect-provider/-/sdk-wallet-connect-provider-4.1.3.tgz#406b8bec5536e5745f18d475c91b3c005d933b65"
+  integrity sha512-HOsbP3f5uV7+JOBcLuNxLLwL0fBFRUe09Pi+4Hpjd8k5FiZFWfDBXmIzcQ/6vkINFnPkMfzDtKlPdZT/VquBPg==
   dependencies:
     "@walletconnect/sign-client" "2.13.3"
     "@walletconnect/utils" "2.13.3"
@@ -2355,9 +2355,9 @@ acorn-walk@^8.0.2:
     acorn "^8.11.0"
 
 acorn@^8.1.0, acorn@^8.11.0, acorn@^8.11.3, acorn@^8.8.1, acorn@^8.9.0:
-  version "8.12.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.12.0.tgz#1627bfa2e058148036133b8d9b51a700663c294c"
-  integrity sha512-RTvkC4w+KNXrM39/lWCUaG0IbRkWdCv7W/IOW9oU6SawyxulvkQy5HQPVTKxEjczcUvapcrw3cFx/60VN/NRNw==
+  version "8.12.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.12.1.tgz#71616bdccbe25e27a54439e0046e89ca76df2248"
+  integrity sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==
 
 agent-base@6:
   version "6.0.2"
@@ -3032,9 +3032,9 @@ camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001538, caniuse-lite@^1.0.30001629:
-  version "1.0.30001639"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001639.tgz#972b3a6adeacdd8f46af5fc7f771e9639f6c1521"
-  integrity sha512-eFHflNTBIlFwP2AIKaYuBQN/apnUoKNhBdza8ZnW/h2di4LCZ4xFqYlxUxo+LQ76KFI1PGcC1QDxMbxTZpSCAg==
+  version "1.0.30001640"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001640.tgz#32c467d4bf1f1a0faa63fc793c2ba81169e7652f"
+  integrity sha512-lA4VMpW0PSUrFnkmVuEKBUovSWKhj7puyCg8StBChgu298N1AtuF1sKWEvfDuimSEDbhlb/KqPKC3fs1HbuQUA==
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -6997,9 +6997,9 @@ pkg-dir@^5.0.0:
     find-up "^5.0.0"
 
 pkg-types@^1.1.1:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/pkg-types/-/pkg-types-1.1.2.tgz#3e211ecec23516f59323ba058ec21cbc533ff81a"
-  integrity sha512-VEGf1he2DR5yowYRl0XJhWJq5ktm9gYIsH+y8sNJpHlxch7JPDaufgrsl4vYjd9hMUY8QVjoNncKbow9I7exyA==
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/pkg-types/-/pkg-types-1.1.3.tgz#161bb1242b21daf7795036803f28e30222e476e3"
+  integrity sha512-+JrgthZG6m3ckicaOB74TwQ+tBWsFl3qVQg7mN8ulwSOElJ7gBhKzj2VkCPnZ4NlF6kEquYU+RIYNVAvzd54UA==
   dependencies:
     confbox "^0.1.7"
     mlly "^1.7.1"
@@ -8595,9 +8595,9 @@ untun@^0.1.3:
     pathe "^1.1.1"
 
 update-browserslist-db@^1.0.16:
-  version "1.0.16"
-  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.0.16.tgz#f6d489ed90fb2f07d67784eb3f53d7891f736356"
-  integrity sha512-KVbTxlBYlckhF5wgfyZXTWnMn7MMZjMu9XG8bPlliUOP9ThaF4QnhP8qrjrH7DRzHfSk0oQv1wToW+iA5GajEQ==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.1.0.tgz#7ca61c0d8650766090728046e416a8cde682859e"
+  integrity sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==
   dependencies:
     escalade "^3.1.2"
     picocolors "^1.0.1"
