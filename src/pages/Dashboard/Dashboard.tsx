@@ -11,6 +11,7 @@ import {
   Transactions,
   BalanceTransaction,
   SingleTransaction,
+  DataOnlyTransaction,
   MultipleTransactions,
   LargeMultipleTransactions,
   WalletConnectPing
@@ -62,6 +63,12 @@ const WIDGETS: WidgetType[] = [
     title: 'Single Transaction',
     widget: SingleTransaction,
     description: 'Single Transaction',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+  {
+    title: 'Data Transaction',
+    widget: DataOnlyTransaction,
+    description: 'Data Transaction',
     reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
   },
   {

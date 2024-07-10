@@ -8,6 +8,7 @@ export * from './Transactions';
 export * from './PingPongService';
 
 export * from './BalanceTransaction';
+export * from './DataOnlyTransaction';
 export * from './SingleTransaction';
 export * from './MultipleTransactions';
 export * from './LargeMultipleTransactions';
