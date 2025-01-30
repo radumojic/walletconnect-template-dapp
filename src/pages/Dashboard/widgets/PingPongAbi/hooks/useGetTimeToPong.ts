@@ -1,4 +1,4 @@
-import { ProxyNetworkProvider } from '@multiversx/sdk-network-providers';
+import { ProxyNetworkProvider } from '@multiversx/sdk-core/out';
 import { useGetAccount, useGetNetworkConfig } from 'hooks';
 import { Address, AddressValue, ContractFunction, ResultsParser } from 'utils';
 import { smartContract } from 'utils/smartContract';

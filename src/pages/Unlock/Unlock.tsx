@@ -34,10 +34,10 @@ const WebWalletLoginButton = USE_WEB_WALLET_CROSS_WINDOW
   : WebWalletUrlLoginButton;
 
 const hasNativeAuth =
-  process.env.VITE_APP_NATIVE_AUTH !== undefined
-    ? process.env.VITE_APP_NATIVE_AUTH === 'true'
+  import.meta.env.VITE_APP_NATIVE_AUTH !== undefined
+    ? import.meta.env.VITE_APP_NATIVE_AUTH === 'true'
     : true;
-const loginToken = process.env.VITE_APP_LOGIN_TOKEN ?? '';
+const loginToken = import.meta.env.VITE_APP_LOGIN_TOKEN ?? '';
 
 export const Unlock = () => {
   const navigate = useNavigate();
