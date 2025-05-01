@@ -1,23 +1,27 @@
-import type {
-  ExtensionLoginButtonPropsType,
-  WebWalletLoginButtonPropsType,
-  OperaWalletLoginButtonPropsType,
-  LedgerLoginButtonPropsType,
-  WalletConnectLoginButtonPropsType
+import { useIframeLogin } from '@multiversx/sdk-dapp/hooks/login/useIframeLogin';
+import {
+  type ExtensionLoginButtonPropsType,
+  type LedgerLoginButtonPropsType,
+  type OperaWalletLoginButtonPropsType,
+  type WalletConnectLoginButtonPropsType,
+  type WebWalletLoginButtonPropsType
 } from '@multiversx/sdk-dapp/UI';
+import { IframeLoginTypes } from '@multiversx/sdk-web-wallet-iframe-provider/out/constants';
+import { useNavigate } from 'react-router-dom';
+import { nativeAuth } from 'config';
+import { useWindowSize } from 'hooks';
 import {
   ExtensionLoginButton,
   LedgerLoginButton,
   OperaWalletLoginButton,
-  WalletConnectLoginButton,
-  WebWalletLoginButton as WebWalletUrlLoginButton,
-  XaliasLoginButton,
-  CrossWindowLoginButton
-} from 'components/sdkDappComponents';
+  WalletConnectLoginButton
+} from 'lib';
 import { RouteNamesEnum } from 'localConstants';
-import { useNavigate } from 'react-router-dom';
-import { AuthRedirectWrapper } from 'wrappers';
-import { WebWalletLoginWrapper, WebWalletLoginConfigEnum } from './components';
+import {
+  IframeButton,
+  WebWalletLoginWrapper,
+  XaliasLoginWrapper
+} from './components';
 
 type CommonPropsType =
   | OperaWalletLoginButtonPropsType
@@ -26,71 +30,77 @@ type CommonPropsType =
   | LedgerLoginButtonPropsType
   | WalletConnectLoginButtonPropsType;
 
-// choose how you want to configure connecting to the web wallet
-const USE_WEB_WALLET_CROSS_WINDOW = true;
-
-const WebWalletLoginButton = USE_WEB_WALLET_CROSS_WINDOW
-  ? CrossWindowLoginButton
-  : WebWalletUrlLoginButton;
-
 const hasNativeAuth =
   import.meta.env.VITE_APP_NATIVE_AUTH !== undefined
     ? import.meta.env.VITE_APP_NATIVE_AUTH === 'true'
     : true;
 const loginToken = import.meta.env.VITE_APP_LOGIN_TOKEN ?? '';
-
 export const Unlock = () => {
   const navigate = useNavigate();
+  const { width } = useWindowSize();
 
+  const [onInitiateLogin, { isLoading }] = useIframeLogin({
+    callbackRoute: RouteNamesEnum.dashboard,
+    nativeAuth,
+    onLoginRedirect: () => {
+      navigate(RouteNamesEnum.dashboard);
+    }
+  });
+
+  const isMobile = width < 768;
   const commonProps: CommonPropsType = {
     callbackRoute: RouteNamesEnum.dashboard,
     ...(hasNativeAuth ? { nativeAuth: true } : {}),
     ...(loginToken ? { token: loginToken } : {}),
     onLoginRedirect: () => {
       navigate(RouteNamesEnum.dashboard);
-    }
+    },
+    disabled: isLoading
   };
 
   return (
-    <AuthRedirectWrapper requireAuth={false}>
-      <div className='flex justify-center items-center'>
-        <div
-          className='flex flex-col p-6 items-center justify-center gap-4 rounded-xl bg-[#f6f8fa]'
-          data-testid='unlockPage'
-        >
-          <div className='flex flex-col items-center gap-1'>
-            <h2 className='text-2xl'>Login</h2>
+    <div className='flex justify-center items-center'>
+      <div
+        className='flex flex-col p-6 items-center justify-center gap-4 rounded-xl bg-[#f6f8fa]'
+        data-testid='unlockPage'
+      >
+        <div className='flex flex-col items-center gap-1'>
+          <h2 className='text-2xl'>Login</h2>
 
-            <p className='text-center text-gray-400'>Choose a login method</p>
-          </div>
+          <p className='text-center text-gray-400'>Choose a login method</p>
+        </div>
 
-          <div className='flex flex-col md:flex-row'>
-            <WalletConnectLoginButton
-              loginButtonText='xPortal App'
+        <div className='flex flex-col md:flex-row'>
+          <WalletConnectLoginButton
+            loginButtonText='xPortal App'
+            {...commonProps}
+          />
+          <LedgerLoginButton loginButtonText='Ledger' {...commonProps} />
+          <ExtensionLoginButton
+            loginButtonText='DeFi Wallet'
+            {...commonProps}
+          />
+          <OperaWalletLoginButton
+            loginButtonText='Opera Crypto Wallet - Beta'
+            {...commonProps}
+          />
+          <XaliasLoginWrapper {...commonProps} />
+          <WebWalletLoginWrapper {...commonProps} />
+          {isMobile && (
+            <IframeButton
+              loginButtonText='Passkey Proxy'
               {...commonProps}
+              onClick={() => onInitiateLogin(IframeLoginTypes.passkey)}
             />
-            <LedgerLoginButton loginButtonText='Ledger' {...commonProps} />
-            <ExtensionLoginButton
-              loginButtonText='DeFi Wallet'
-              {...commonProps}
-            />
-            <OperaWalletLoginButton
-              loginButtonText='Opera Crypto Wallet - Beta'
-              {...commonProps}
-            />
+          )}
 
-            <XaliasLoginButton
-              loginButtonText='xAlias'
-              data-testid='xAliasLoginBtn'
-              {...commonProps}
-            />
-            <WebWalletLoginWrapper
-              {...commonProps}
-              config={['crossWindow', 'url']}
-            />
-          </div>
+          <IframeButton
+            loginButtonText='Metamask Proxy'
+            {...commonProps}
+            onClick={() => onInitiateLogin(IframeLoginTypes.metamask)}
+          />
         </div>
       </div>
-    </AuthRedirectWrapper>
+    </div>
   );
 };

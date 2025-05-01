@@ -1,19 +1,22 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Layout } from 'components';
+import {
+  apiTimeout,
+  environment,
+  sampleAuthenticatedDomains
+  // walletConnectV2ProjectId
+} from 'config';
 import {
   AxiosInterceptorContext, // using this is optional
   DappProvider,
-  Layout,
-  TransactionsToastList,
   NotificationModal,
-  SignTransactionsModals
+  SignTransactionsModals,
+  TransactionsToastList
   // uncomment this to use the custom transaction tracker
   // TransactionsTracker
-} from 'components';
-
-import { apiTimeout, environment, sampleAuthenticatedDomains } from 'config';
+} from 'lib';
 import { RouteNamesEnum } from 'localConstants';
-import { PageNotFound, Unlock } from 'pages';
+import { PageNotFound } from 'pages';
 import { routes } from 'routes';
 import { BatchTransactionsContextProvider } from 'wrappers';
 
@@ -39,20 +42,20 @@ const AppContent = () => {
         shouldUseWebViewProvider: true,
         logoutRoute: RouteNamesEnum.unlock
       }}
-      // customComponents={{
-      //   transactionTracker: {
-      //     // uncomment this to use the custom transaction tracker
-      //     // component: TransactionsTracker,
-      //     props: {
-      //       onSuccess: (sessionId: string) => {
-      //         console.log(`Session ${sessionId} successfully completed`);
-      //       },
-      //       onFail: (sessionId: string, errorMessage: string) => {
-      //         console.log(`Session ${sessionId} failed. ${errorMessage ?? ''}`);
-      //       }
-      //     }
-      //   }
-      // }}
+      customComponents={{
+        transactionTracker: {
+          // uncomment this to use the custom transaction tracker
+          // component: TransactionsTracker,
+          props: {
+            onSuccess: (sessionId: string) => {
+              console.log(`Session ${sessionId} successfully completed`);
+            },
+            onFail: (sessionId: string, errorMessage: string) => {
+              console.log(`Session ${sessionId} failed. ${errorMessage ?? ''}`);
+            }
+          }
+        }
+      }}
     >
       <AxiosInterceptorContext.Listener>
         <Layout>
@@ -60,7 +63,6 @@ const AppContent = () => {
           <NotificationModal />
           <SignTransactionsModals />
           <Routes>
-            <Route path={RouteNamesEnum.unlock} element={<Unlock />} />
             {routes.map((route) => (
               <Route
                 path={route.path}
@@ -79,7 +81,9 @@ const AppContent = () => {
 export const App = () => {
   return (
     <AxiosInterceptorContext.Provider>
-      <AxiosInterceptorContext.Interceptor authenticatedDomains={[]}>
+      <AxiosInterceptorContext.Interceptor
+        authenticatedDomains={sampleAuthenticatedDomains}
+      >
         <Router>
           <BatchTransactionsContextProvider>
             <AppContent />

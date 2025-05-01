@@ -1,6 +1,6 @@
+import { sendTransactions } from 'lib/sdkDapp/sdkDapp.helpers';
+import { isSafari, SessionEnum } from 'localConstants/session';
 import { getBatchTransactions } from '../helpers';
-import { sendTransactions } from 'helpers/sdkDappHelpers';
-import { SessionEnum } from 'localConstants/session';
 import { SendTransactionProps } from '../types';
 
 export const sendBatchTransactions = async ({
@@ -19,7 +19,8 @@ export const sendBatchTransactions = async ({
     transactions,
     signWithoutSending: true,
     customTransactionInformation: { redirectAfterSign: true },
-    callbackRoute
+    callbackRoute,
+    hasConsentPopup: isSafari
   });
 
   if (error) {
