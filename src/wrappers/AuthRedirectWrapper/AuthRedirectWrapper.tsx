@@ -1,25 +1,29 @@
-import type { PropsWithChildren } from 'react';
-import { Navigate } from 'react-router-dom';
-import { useGetIsLoggedIn } from 'hooks';
+import { PropsWithChildren, useEffect } from 'react';
+import { matchPath, useLocation, useNavigate } from 'react-router-dom';
+import { useGetIsLoggedIn } from 'lib';
 import { RouteNamesEnum } from 'localConstants';
+import { routes } from 'routes';
 
-interface AuthRedirectWrapperPropsType extends PropsWithChildren {
-  requireAuth?: boolean;
-}
-
-export const AuthRedirectWrapper = ({
-  children,
-  requireAuth = true
-}: AuthRedirectWrapperPropsType) => {
+export const AuthRedirectWrapper = ({ children }: PropsWithChildren) => {
   const isLoggedIn = useGetIsLoggedIn();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-  if (isLoggedIn && !requireAuth) {
-    return <Navigate to={RouteNamesEnum.dashboard} />;
-  }
+  const currentRoute = routes.find((route) => matchPath(route.path, pathname));
 
-  if (!isLoggedIn && requireAuth) {
-    return <Navigate to={RouteNamesEnum.unlock} />;
-  }
+  const requireAuth = Boolean(currentRoute?.authenticatedRoute);
+
+  useEffect(() => {
+    if (isLoggedIn && !requireAuth) {
+      navigate(RouteNamesEnum.dashboard);
+
+      return;
+    }
+
+    if (!isLoggedIn && requireAuth) {
+      navigate(RouteNamesEnum.unlock);
+    }
+  }, [isLoggedIn, currentRoute]);
 
   return <>{children}</>;
 };

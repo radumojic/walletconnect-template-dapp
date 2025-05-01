@@ -1,34 +1,30 @@
-import { useEffect, useState } from 'react';
 import {
-  faPaperPlane,
-  faArrowsRotate
+  faArrowsRotate,
+  faPaperPlane
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useGetBatches } from '@multiversx/sdk-dapp/hooks/transactions/batch/useGetBatches';
-import { Button } from 'components/Button';
-import {
-  OutputContainer,
-  TransactionsOutput
-} from 'components/OutputContainer';
+import { useEffect, useState } from 'react';
+import { Button, OutputContainer, TransactionsOutput } from 'components';
 import {
   useGetAccountInfo,
+  useGetBatches,
   useGetNetworkConfig,
   useGetPendingTransactions
-} from 'hooks';
+} from 'lib';
 import { SessionEnum } from 'localConstants/session';
 import { SignedTransactionType, WidgetProps } from 'types';
 import { useBatchTransactionContext } from 'wrappers';
-import { useSendSignedTransactions } from './hooks';
 import {
   sendBatchTransactions,
   signAndAutoSendBatchTransactions,
   swapAndLockTokens
 } from './helpers';
+import { useSendSignedTransactions } from './hooks';
 
 export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
   const { setSendBatchTransactionsOnDemand } = useBatchTransactionContext();
   const { address, account } = useGetAccountInfo();
-  const network = useGetNetworkConfig();
+  const { network } = useGetNetworkConfig();
   const { batches } = useGetBatches();
   const { hasPendingTransactions } = useGetPendingTransactions();
   const [trackBatchId, setTrackBatchId] = useState(
@@ -39,7 +35,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
     SignedTransactionType[] | null
   >(null);
   const [currentSessionId, setCurrentSessionId] = useState(
-    sessionStorage.getItem(SessionEnum.signedSessionId)
+    sessionStorage.getItem(SessionEnum.signedSessionId) || ''
   );
 
   const { batchId, setBatchSessionId } = useSendSignedTransactions({
@@ -62,18 +58,18 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
   const executeSignAndAutoSendBatchTransactions = async () => {
     setSendBatchTransactionsOnDemand(false);
 
-    const { batchId } = await signAndAutoSendBatchTransactions({
+    const { batchId: batchIdResult } = await signAndAutoSendBatchTransactions({
       address,
       nonce: account.nonce,
-      chainID: network.chainID,
+      chainID: network.chainId,
       callbackRoute
     });
 
-    if (!batchId) {
+    if (!batchIdResult) {
       return;
     }
 
-    setTrackBatchId(batchId);
+    setTrackBatchId(batchIdResult);
   };
 
   const executeBatchTransactions = async () => {
@@ -81,7 +77,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
     const { newBatchSessionId, sessionId } = await sendBatchTransactions({
       address,
       nonce: account.nonce,
-      chainID: network.chainID,
+      chainID: network.chainId,
       callbackRoute
     });
 
@@ -98,7 +94,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
     const { batchId: currentBatchId } = await swapAndLockTokens({
       address,
       nonce: account.nonce,
-      chainID: network.chainID,
+      chainID: network.chainId,
       callbackRoute
     });
 

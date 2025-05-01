@@ -1,7 +1,6 @@
-import { SessionEnum } from 'localConstants/session';
+import { refreshAccount, sendBatchTransactions } from 'lib';
+import { isSafari, SessionEnum } from 'localConstants/session';
 import { getSwapAndLockTransactions } from '../helpers';
-import { sendBatchTransactions } from 'services/sdkDappServices';
-import { refreshAccount } from 'utils/sdkDappUtils';
 import { SendTransactionProps } from '../types';
 
 export const swapAndLockTokens = async ({
@@ -32,7 +31,8 @@ export const swapAndLockTokens = async ({
       errorMessage: 'An error has occurred during transaction execution',
       successMessage: 'Batch transactions successful'
     },
-    callbackRoute
+    callbackRoute,
+    hasConsentPopup: isSafari
   });
 
   if (error) {

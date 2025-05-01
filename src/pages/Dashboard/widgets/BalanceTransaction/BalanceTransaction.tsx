@@ -1,8 +1,8 @@
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'components/Button';
-import { refreshAccount, sendTransactions } from 'helpers';
-import { useGetAccountInfo } from 'hooks';
+import { refreshAccount, sendTransactions } from 'lib';
+import { useGetAccountInfo } from 'lib';
 
 export const BalanceTransaction = () => {
   const { address } = useGetAccountInfo();
