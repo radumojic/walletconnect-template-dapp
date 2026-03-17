@@ -29,10 +29,10 @@
   },
   "scripts": {
     "lint": "eslint --ext js,ts,tsx src --fix",
-    "start-devnet": "npm run copy-devnet-config & vite dev",
+    "start": "npm run copy-devnet-config & vite dev",
     "start-testnet": "npm run copy-testnet-config & vite dev",
     "start-mainnet": "npm run copy-mainnet-config & vite dev",
-    "build-devnet": "tsc & npm run copy-devnet-config & vite build",
+    "build": "tsc & npm run copy-devnet-config & vite build",
     "build-testnet": "tsc & npm run copy-testnet-config & vite build",
     "build-mainnet": "tsc & npm run copy-mainnet-config & vite build",
     "copy-devnet-config": "cp ./src/config/config.devnet.ts ./src/config/index.ts",
