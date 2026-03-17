@@ -1,7 +1,8 @@
-import { createRoot } from 'react-dom/client';
-import './styles/globals.css';
+import ReactDOM from 'react-dom/client';
+import { initApp } from 'lib';
 import { App } from './App';
+import { config } from './initConfig';
 
-const container = document.getElementById('root');
-const root = createRoot(container as HTMLElement);
-root.render((<App />) as any);
+initApp(config).then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
+});

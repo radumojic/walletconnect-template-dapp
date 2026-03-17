@@ -1,94 +1,121 @@
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'components/Button';
-import { refreshAccount, sendTransactions } from 'lib';
-import { useGetAccountInfo } from 'lib';
+import { signAndSendTransactions } from 'helpers';
+import { Address, Transaction, useGetAccount, useGetNetworkConfig } from 'lib';
+import { ItemsIdentifiersEnum } from 'pages/Dashboard/dashboard.types';
 
 export const LargeMultipleTransactions = () => {
-  const { address } = useGetAccountInfo();
+  const { address } = useGetAccount();
+  const { network } = useGetNetworkConfig();
 
   const sendLargeMultipleTransactions = async () => {
-    const firstTransaction = {
-      value: '1000000000000000',
-      data: 'first',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const secondTransaction = {
-      value: '2000000000000000',
-      data: 'second',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const thirdTransaction = {
-      value: '3000000000000000',
-      data: 'third',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const fourthTransaction = {
-      value: '4000000000000000',
-      data: 'fourth',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const fifthTransaction = {
-      value: '500000000000000',
-      data: 'fifth',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const sixthTransaction = {
-      value: '60000000000000',
-      data: 'sixth',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const seventhTransaction = {
-      value: '7000000000000',
-      data: 'seventh',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const eighthTransaction = {
-      value: '80000000000000',
-      data: 'eighth',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const ninthTransaction = {
-      value: '9000000000000',
-      data: 'ninth',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const tenthTransaction = {
-      value: '1000000000000',
-      data: 'tenth',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const eleventhTransaction = {
-      value: '1100000000000',
-      data: 'eleventh',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const twelfthTransaction = {
-      value: '12000000000000',
-      data: 'twelfth',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const thirteenthTransaction = {
-      value: '1300000000000',
-      data: 'lucky thirteenth',
-      receiver: address,
-      gasLimit: '60000000'
-    };
+    const firstTransaction = new Transaction({
+      value: BigInt('1000000000000000'),
+      data: Buffer.from('first'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const secondTransaction = new Transaction({
+      value: BigInt('2000000000000000'),
+      data: Buffer.from('second'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const thirdTransaction = new Transaction({
+      value: BigInt('3000000000000000'),
+      data: Buffer.from('third'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const fourthTransaction = new Transaction({
+      value: BigInt('4000000000000000'),
+      data: Buffer.from('fourth'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const fifthTransaction = new Transaction({
+      value: BigInt('500000000000000'),
+      data: Buffer.from('fifth'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const sixthTransaction = new Transaction({
+      value: BigInt('60000000000000'),
+      data: Buffer.from('sixth'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const seventhTransaction = new Transaction({
+      value: BigInt('7000000000000'),
+      data: Buffer.from('seventh'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const eighthTransaction = new Transaction({
+      value: BigInt('80000000000000'),
+      data: Buffer.from('eighth'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const ninthTransaction = new Transaction({
+      value: BigInt('9000000000000'),
+      data: Buffer.from('ninth'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const tenthTransaction = new Transaction({
+      value: BigInt('1000000000000'),
+      data: Buffer.from('tenth'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const eleventhTransaction = new Transaction({
+      value: BigInt('1100000000000'),
+      data: Buffer.from('eleventh'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const twelfthTransaction = new Transaction({
+      value: BigInt('12000000000000'),
+      data: Buffer.from('twelfth'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const thirteenthTransaction = new Transaction({
+      value: BigInt('1300000000000'),
+      data: Buffer.from('lucky thirteenth'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
 
-    await refreshAccount();
-    await sendTransactions({
+    await signAndSendTransactions({
       transactions: [
         firstTransaction,
         secondTransaction,
@@ -108,13 +135,15 @@ export const LargeMultipleTransactions = () => {
         processingMessage: 'Processing(Large) Multiple transactions',
         errorMessage: 'An error has occured during(Large) Multiple tx',
         successMessage: '(Large) Multiple transactions successful'
-      },
-      redirectAfterSign: false
+      }
     });
   };
 
   return (
-    <div className='flex flex-col gap-6'>
+    <div
+      className='flex flex-col gap-6'
+      id={ItemsIdentifiersEnum.largeMultipleTransaction}
+    >
       <div className='flex flex-col gap-2'>
         <div className='flex justify-start gap-2'>
           <Button

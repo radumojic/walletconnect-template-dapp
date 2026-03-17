@@ -1,45 +1,54 @@
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'components/Button';
-import { refreshAccount, sendTransactions } from 'lib';
-import { useGetAccountInfo } from 'lib';
+import { signAndSendTransactions } from 'helpers';
+import { Address, Transaction, useGetAccount, useGetNetworkConfig } from 'lib';
+import { ItemsIdentifiersEnum } from 'pages/Dashboard/dashboard.types';
 
 export const MultipleTransactions = () => {
-  const { address } = useGetAccountInfo();
+  const { address } = useGetAccount();
+  const { network } = useGetNetworkConfig();
 
   const sendMultipleTransactions = async () => {
-    const firstTransaction = {
-      value: '10000000000000000',
-      data: 'first',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const secondTransaction = {
-      value: '20000000000000000',
-      data: 'second',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    const thirdTransaction = {
-      value: '30000000000000000',
-      data: 'third',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    await refreshAccount();
-    await sendTransactions({
+    const firstTransaction = new Transaction({
+      value: BigInt('10000000000000000'),
+      data: Buffer.from('first'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const secondTransaction = new Transaction({
+      value: BigInt('20000000000000000'),
+      data: Buffer.from('second'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    const thirdTransaction = new Transaction({
+      value: BigInt('30000000000000000'),
+      data: Buffer.from('third'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    await signAndSendTransactions({
       transactions: [firstTransaction, secondTransaction, thirdTransaction],
       transactionsDisplayInfo: {
         processingMessage: 'Processing Multiple transactions',
         errorMessage: 'An error has occured during Multiple tx',
         successMessage: 'Multiple transactions successful'
-      },
-      redirectAfterSign: false
+      }
     });
   };
 
   return (
-    <div className='flex flex-col gap-6'>
+    <div
+      className='flex flex-col gap-6'
+      id={ItemsIdentifiersEnum.multipleTransactions}
+    >
       <div className='flex flex-col gap-2'>
         <div className='flex justify-start gap-2'>
           <Button

@@ -1,32 +1,38 @@
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'components/Button';
-import { refreshAccount, sendTransactions } from 'lib';
-import { useGetAccountInfo } from 'lib';
+import { signAndSendTransactions } from 'helpers';
+import { Address, Transaction, useGetAccount, useGetNetworkConfig } from 'lib';
+import { ItemsIdentifiersEnum } from 'pages/Dashboard/dashboard.types';
 
 export const BalanceTransaction = () => {
-  const { address } = useGetAccountInfo();
+  const { address } = useGetAccount();
+  const { network } = useGetNetworkConfig();
 
   const sendBalanceTransaction = async () => {
-    const balanceSelfTransaction = {
-      value: '100000000000000000',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    await refreshAccount();
-    await sendTransactions({
-      transactions: balanceSelfTransaction,
+    const singleSelfTransaction = new Transaction({
+      value: BigInt('100000000000000000'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+
+    await signAndSendTransactions({
+      transactions: [singleSelfTransaction],
       transactionsDisplayInfo: {
         processingMessage: 'Processing Balance Tx',
         errorMessage: 'An error has occured during Balance Tx',
         successMessage: 'Balance Tx successful'
-      },
-      redirectAfterSign: false
+      }
     });
   };
 
   return (
-    <div className='flex flex-col gap-6'>
+    <div
+      className='flex flex-col gap-6'
+      id={ItemsIdentifiersEnum.balanceTransaction}
+    >
       <div className='flex flex-col gap-2'>
         <div className='flex justify-start gap-2'>
           <Button

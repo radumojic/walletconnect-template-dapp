@@ -7,7 +7,7 @@ import {
   useGetAccount,
   useGetNetworkConfig
 } from 'lib';
-import { TransactionsPropsType } from '../types';
+import { TransactionsPropsType } from '../transactions.types';
 
 export const useGetTransactions = (payload?: TransactionsPropsType) => {
   const { address } = useGetAccount();
@@ -31,9 +31,11 @@ export const useGetTransactions = (payload?: TransactionsPropsType) => {
         ...(payload ?? {})
       });
 
-      const interpretedTransactions = data.map((transaction) =>
-        getInterpretedTransaction({ transaction, address, explorerAddress })
+      const interpretedTransactions = data.map(
+        (transaction: ServerTransactionType) =>
+          getInterpretedTransaction({ transaction, address, explorerAddress })
       );
+
       setTransactions(interpretedTransactions);
     } catch (error) {
       console.error('Failed to fetch transactions', error);
@@ -42,5 +44,9 @@ export const useGetTransactions = (payload?: TransactionsPropsType) => {
     }
   };
 
-  return { isLoading, transactions, getTransactions: fetchTransactions };
+  return {
+    isLoading,
+    transactions,
+    getTransactions: fetchTransactions
+  };
 };

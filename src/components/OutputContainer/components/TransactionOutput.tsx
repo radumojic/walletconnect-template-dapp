@@ -1,13 +1,24 @@
-import { Label } from 'components';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   ACCOUNTS_ENDPOINT,
-  ExplorerLink,
   FormatAmount,
+  getExplorerLink,
+  MvxCopyButton,
   SignedTransactionType,
   TRANSACTIONS_ENDPOINT,
   useGetNetworkConfig
 } from 'lib';
-import { DataTestIdsEnum } from 'localConstants';
+import { Label } from '../../Label';
+
+const styles = {
+  transactionContainer: 'transaction-container flex flex-col',
+  transactionElementContainer: 'transaction-elem-container flex gap-2',
+  transactionElement: 'transaction-elem flex gap-3 w-full',
+  buttons: 'buttons flex gap-2',
+  dataContainer: 'data-container whitespace-nowrap',
+  decodedData: 'decoded-data whitespace-normal break-words'
+} satisfies Record<string, string>;
 
 export const TransactionOutput = ({
   transaction
@@ -18,34 +29,56 @@ export const TransactionOutput = ({
   const decodedData = transaction.data
     ? Buffer.from(transaction.data, 'base64').toString('ascii')
     : 'N/A';
+
+  const explorerAddress = network.explorerAddress;
+  const hashExplorerLink = getExplorerLink({
+    to: `/${TRANSACTIONS_ENDPOINT}/${transaction.hash}`,
+    explorerAddress
+  });
+  const receiverExplorerLink = getExplorerLink({
+    to: `/${ACCOUNTS_ENDPOINT}/${transaction.receiver}`,
+    explorerAddress
+  });
+
   return (
-    <div className='flex flex-col'>
-      <p>
+    <div className={styles.transactionContainer}>
+      <div className={styles.transactionElementContainer}>
         <Label>Hash:</Label>
-        <ExplorerLink
-          page={`/${TRANSACTIONS_ENDPOINT}/${transaction.hash}`}
-          className='border-b border-dotted border-gray-500 hover:border-solid hover:border-gray-800'
-        >
+
+        <div className={styles.transactionElement}>
           {transaction.hash}
-        </ExplorerLink>
-      </p>
-      <p>
+
+          <div className={styles.buttons}>
+            <MvxCopyButton text={transaction.hash} />
+
+            <a href={hashExplorerLink} target='_blank' rel='noreferrer'>
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.transactionElementContainer}>
         <Label>Receiver:</Label>
-        <ExplorerLink
-          page={`/${ACCOUNTS_ENDPOINT}/${transaction.receiver}`}
-          className='border-b border-dotted border-gray-500 hover:border-solid hover:border-gray-800'
-        >
+        <div className={styles.transactionElement}>
           {transaction.receiver}
-        </ExplorerLink>
-      </p>
+
+          <div className={styles.buttons}>
+            <MvxCopyButton text={transaction.receiver} />
+
+            <a href={receiverExplorerLink} target='_blank' rel='noreferrer'>
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+            </a>
+          </div>
+        </div>
+      </div>
 
       <p>
         <Label>Amount: </Label>
         <FormatAmount
           value={transaction.value}
-          showLabel={transaction.value !== '0'}
-          egldLabel={network.egldLabel}
-          data-testid={DataTestIdsEnum.balance}
+          showLabel={true}
+          data-testid='balance'
         />
       </p>
       <p>
@@ -56,8 +89,9 @@ export const TransactionOutput = ({
         <Label>Gas limit: </Label>
         {transaction.gasLimit}
       </p>
-      <p className='whitespace-nowrap'>
-        <Label>Data: </Label> {decodedData}
+      <p className={styles.dataContainer}>
+        <Label>Data: </Label>
+        <span className={styles.decodedData}>{decodedData}</span>
       </p>
     </div>
   );

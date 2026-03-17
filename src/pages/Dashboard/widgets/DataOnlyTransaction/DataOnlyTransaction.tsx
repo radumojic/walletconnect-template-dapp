@@ -1,33 +1,38 @@
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'components/Button';
-import { refreshAccount, sendTransactions } from 'lib';
-import { useGetAccountInfo } from 'lib';
+import { signAndSendTransactions } from 'helpers';
+import { Address, Transaction, useGetAccount, useGetNetworkConfig } from 'lib';
+import { ItemsIdentifiersEnum } from 'pages/Dashboard/dashboard.types';
 
 export const DataOnlyTransaction = () => {
-  const { address } = useGetAccountInfo();
+  const { address } = useGetAccount();
+  const { network } = useGetNetworkConfig();
 
   const sendDataOnlyTransaction = async () => {
-    const singleSelfTransaction = {
-      value: '0',
-      data: 'data',
-      receiver: address,
-      gasLimit: '60000000'
-    };
-    await refreshAccount();
-    await sendTransactions({
-      transactions: singleSelfTransaction,
+    const singleSelfTransaction = new Transaction({
+      value: BigInt('0'),
+      data: Buffer.from('data'),
+      sender: new Address(address),
+      receiver: new Address(address),
+      chainID: network.chainId,
+      gasLimit: BigInt('60000000')
+    });
+    await signAndSendTransactions({
+      transactions: [singleSelfTransaction],
       transactionsDisplayInfo: {
         processingMessage: 'Processing Data Tx',
         errorMessage: 'An error has occured during Data Tx',
         successMessage: 'Data Tx successful'
-      },
-      redirectAfterSign: false
+      }
     });
   };
 
   return (
-    <div className='flex flex-col gap-6'>
+    <div
+      className='flex flex-col gap-6'
+      id={ItemsIdentifiersEnum.dataTransaction}
+    >
       <div className='flex flex-col gap-2'>
         <div className='flex justify-start gap-2'>
           <Button

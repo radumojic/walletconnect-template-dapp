@@ -1,52 +1,63 @@
-import { Label } from 'components';
-import { CopyButton, Message, useGetLastSignedMessageSession } from 'lib';
-import { decodeMessage } from '../helpers/decodeMessage';
+import { Label } from 'components/Label';
+import { CopyButton, Message } from 'lib';
+import { DataTestIdsEnum } from 'localConstants';
+import { decodeMessage } from '../helpers';
 
-export const SignSuccess = () => {
-  const signedMessageInfo = useGetLastSignedMessageSession();
+// prettier-ignore
+const styles = {
+  signSuccessContainer: 'sign-success-container flex flex-col gap-6',
+  signSuccess: 'sign-success flex flex-col w-[calc(100%-50px)]',
+  signatureContainer: 'signature-container flex flex-row w-full gap-2',
+  signatureText: 'signature-text w-full resize-none outline-none bg-transparent',
+  encodedMessageContainer: 'encoded-message-container flex flex-row w-full gap-2',
+  encodedMessageText: 'encoded-message-text flex-1 break-all',
+  decodedMessageContainer: 'decoded-message-container flex flex-row w-full gap-2',
+  decodedMessageText: 'decoded-message-text flex-1 break-all resize-none outline-none text-green-700 bg-transparent'
+} satisfies Record<string, string>;
 
-  if (!signedMessageInfo?.signature) {
+interface VerifyMessagePropsType {
+  message: Message;
+  signature: string;
+  address: string;
+}
+
+export const SignSuccess = (props: VerifyMessagePropsType) => {
+  if (props.message == null) {
     return null;
   }
 
-  const { signature } = signedMessageInfo;
-
-  const { decodedMessage, encodedMessage } = decodeMessage({
-    signature,
-    message: new Message({
-      data: new Uint8Array(Buffer.from(signedMessageInfo?.message ?? ''))
-    })
+  const { encodedMessage, decodedMessage } = decodeMessage({
+    message: props.message,
+    signature: props.signature
   });
 
   return (
-    <div className='flex flex-col gap-6'>
-      <div className='flex flex-col w-[calc(100%-50px)]'>
-        <div className='flex flex-row w-full gap-2'>
+    <div className={styles.signSuccessContainer}>
+      <div className={styles.signSuccess}>
+        <div className={styles.signatureContainer}>
           <Label>Signature:</Label>
 
           <textarea
+            data-testid={DataTestIdsEnum.messageSignature}
             readOnly
-            className='w-full resize-none outline-none bg-transparent'
+            className={styles.signatureText}
             rows={2}
-            defaultValue={signature}
+            defaultValue={props.signature}
           />
-          <CopyButton text={signature} />
+
+          <CopyButton text={props.signature} />
         </div>
 
-        <div className='flex flex-row w-full gap-2'>
+        <div className={styles.encodedMessageContainer}>
           <Label>Encoded message:</Label>
-          <p>{encodedMessage}</p>
+
+          <p data-testid={DataTestIdsEnum.encodedMessage} className={styles.encodedMessageText}>{encodedMessage}</p>
         </div>
 
-        <div className='flex flex-row w-full gap-2'>
+        <div className={styles.decodedMessageContainer}>
           <Label>Decoded message:</Label>
-          <textarea
-            readOnly
-            className='resize-none outline-none text-green-700 bg-transparent'
-            rows={1}
-            value={decodedMessage}
-            placeholder='Decoded message'
-          />
+
+          <p data-testid={DataTestIdsEnum.decodedMessage} className={styles.decodedMessageText}>{decodedMessage}</p>
         </div>
       </div>
     </div>

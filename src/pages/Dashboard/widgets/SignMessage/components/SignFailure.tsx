@@ -1,14 +1,18 @@
-import { useGetSignMessageInfoStatus } from 'lib';
+const styles = {
+  signFailureContainer: 'sign-failure-container flex flex-col',
+  signFailureErrorMessage: 'sign-failure-error-message flex gap-1'
+} satisfies Record<string, string>;
 
-export const SignFailure = () => {
-  const { errorMessage } = useGetSignMessageInfoStatus();
+interface SignFailurePropsType {
+  errorMessage?: string;
+}
 
-  return (
-    <div className='flex flex-col'>
-      <p>Message could not be signed</p>
-      <p className='flex gap-1'>
-        Reason: <span>{errorMessage ?? '-'}</span>
-      </p>
-    </div>
-  );
-};
+export const SignFailure = ({ errorMessage }: SignFailurePropsType) => (
+  <div className={styles.signFailureContainer}>
+    <p>Message could not be signed</p>
+
+    <p className={styles.signFailureErrorMessage}>
+      Reason: <span>{errorMessage ?? '-'}</span>
+    </p>
+  </div>
+);

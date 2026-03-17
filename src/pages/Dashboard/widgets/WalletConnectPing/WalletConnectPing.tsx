@@ -1,18 +1,18 @@
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useGetAccountProvider } from '@multiversx/sdk-dapp/hooks/account/useGetAccountProvider';
-import { getProviderType } from '@multiversx/sdk-dapp/providers/utils';
-import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
 import { Button } from 'components/Button';
+import { getAccountProvider, ProviderTypeEnum } from 'lib';
+import { ItemsIdentifiersEnum } from 'pages/Dashboard/dashboard.types';
 
 export const WalletConnectPing = () => {
-  const { provider } = useGetAccountProvider();
-  const providerType = getProviderType(provider);
+  const provider = getAccountProvider();
 
   const isSigningWithWalletConnectV2 =
-    providerType === LoginMethodsEnum.walletconnectv2;
+    provider.getType() === ProviderTypeEnum.walletConnect;
 
   const pingWalletConnect = async () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const response = await provider?.ping?.();
     alert(response ? 'Pinged Ok' : 'No Ping');
   };
@@ -22,7 +22,10 @@ export const WalletConnectPing = () => {
   }
 
   return (
-    <div className='flex flex-col gap-6'>
+    <div
+      className='flex flex-col gap-6'
+      id={ItemsIdentifiersEnum.walletConnectPing}
+    >
       <div className='flex flex-col gap-2'>
         <div className='flex justify-start gap-2'>
           <Button
