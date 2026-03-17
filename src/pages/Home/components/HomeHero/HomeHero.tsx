@@ -70,7 +70,7 @@ export const HomeHero = () => {
     <div className={heroContainerClasses}>
       <div className={styles.heroSectionTop}>
         <div className={styles.heroSectionTopContent}>
-          <h1 className={styles.heroTitle}>dApp Template</h1>
+          <h1 className={styles.heroTitle}>WalletConnect dApp Template</h1>
 
           <p className={styles.heroDescription}>
             The sdk-dapp starter project for any dApp built on the MultiversX

@@ -26,7 +26,7 @@ export const Logo = ({ hideTextOnMobile }: LogoPropsType) => (
         [styles.logoTextHidden]: hideTextOnMobile
       })}
     >
-      dApp Template
+      WalletConnect dApp Template
     </div>
   </div>
 );

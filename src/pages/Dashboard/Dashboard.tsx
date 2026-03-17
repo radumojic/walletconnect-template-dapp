@@ -1,43 +1,83 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
 import { contractAddress } from 'config';
+import { useEffect, useState } from 'react';
 import { WidgetType } from 'types/widget.types';
 import { DashboardHeader, LeftPanel, Widget } from './components';
 import styles from './dashboard.styles';
 import {
+  BalanceTransaction,
   BatchTransactions,
+  DataOnlyTransaction,
+  LargeMultipleTransactions,
+  MultipleTransactions,
   NativeAuth,
-  PingPongAbi,
-  PingPongRaw,
-  PingPongService,
   SignMessage,
-  Transactions
+  SingleTransaction,
+  Transactions,
+  WalletConnectPing
 } from './widgets';
 
 const dashboardWidgets: WidgetType[] = [
   {
-    title: 'Ping & Pong (Manual)',
-    widget: PingPongRaw,
-    description:
-      'Smart Contract interactions using manually formulated transactions',
-    reference:
-      'https://docs.multiversx.com/sdk-and-tools/indices/es-index-transactions/'
+    title: 'Balance Transaction',
+    widget: BalanceTransaction,
+    description: 'Balance Transaction',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
   },
   {
-    title: 'Ping & Pong (ABI)',
-    widget: PingPongAbi,
-    description:
-      'Smart Contract interactions using the ABI generated transactions',
-    reference:
-      'https://docs.multiversx.com/sdk-and-tools/sdk-js/sdk-js-cookbook/#using-interaction-when-the-abi-is-available'
+    title: 'Single Transaction',
+    widget: SingleTransaction,
+    description: 'Single Transaction',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
   },
   {
-    title: 'Ping & Pong (Backend)',
-    widget: PingPongService,
-    description:
-      'Smart Contract interactions using the backend generated transactions',
-    reference: 'https://github.com/multiversx/mx-ping-pong-service'
+    title: 'Data Transaction',
+    widget: DataOnlyTransaction,
+    description: 'Data Transaction',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
   },
+  {
+    title: 'Multiple Transactions',
+    widget: MultipleTransactions,
+    description: 'Multiple Transactions',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+  {
+    title: '(Large) Multiple Transactions',
+    widget: LargeMultipleTransactions,
+    description: '(Large) Multiple Transactions',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+
+  {
+    title: 'WalletConnect Ping',
+    widget: WalletConnectPing,
+    description: 'WalletConnect Ping',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account'
+  },
+  // {
+  //   title: 'Ping & Pong (Manual)',
+  //   widget: PingPongRaw,
+  //   description:
+  //     'Smart Contract interactions using manually formulated transactions',
+  //   reference:
+  //     'https://docs.multiversx.com/sdk-and-tools/indices/es-index-transactions/'
+  // },
+  // {
+  //   title: 'Ping & Pong (ABI)',
+  //   widget: PingPongAbi,
+  //   description:
+  //     'Smart Contract interactions using the ABI generated transactions',
+  //   reference:
+  //     'https://docs.multiversx.com/sdk-and-tools/sdk-js/sdk-js-cookbook/#using-interaction-when-the-abi-is-available'
+  // },
+  // {
+  //   title: 'Ping & Pong (Backend)',
+  //   widget: PingPongService,
+  //   description:
+  //     'Smart Contract interactions using the backend generated transactions',
+  //   reference: 'https://github.com/multiversx/mx-ping-pong-service'
+  // },
   {
     title: 'Sign message',
     widget: SignMessage,

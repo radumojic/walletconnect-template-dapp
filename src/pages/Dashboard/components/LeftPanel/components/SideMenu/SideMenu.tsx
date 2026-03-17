@@ -3,15 +3,12 @@ import {
   faFilter,
   faFingerprint,
   faPenNib,
-  faRectangleList,
-  faTableTennisPaddleBall
+  faRectangleList
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { useState } from 'react';
 import { ReactComponent as IconBatch } from 'assets/img/batch-tx.svg';
-import { ReactComponent as IconAbi } from 'assets/img/ping-pong-abi.svg';
-import { ReactComponent as IconBackend } from 'assets/img/ping-pong-backend.svg';
 import { ItemsIdentifiersEnum } from 'pages/Dashboard/dashboard.types';
 import { ItemIcon } from './components';
 import styles from './sideMenu.styles';
@@ -19,19 +16,34 @@ import { MenuItemsType, SideMenuPropsType } from './sideMenu.types';
 
 const menuItems: MenuItemsType[] = [
   {
-    title: 'Ping & Pong (Manual)',
-    icon: faTableTennisPaddleBall,
-    id: ItemsIdentifiersEnum.pingPongRaw
+    title: 'Balance Transaction',
+    icon: IconBatch,
+    id: ItemsIdentifiersEnum.balanceTransaction
   },
   {
-    title: 'Ping & Pong (ABI)',
-    icon: IconAbi,
-    id: ItemsIdentifiersEnum.pingPongAbi
+    title: 'Single Transaction',
+    icon: IconBatch,
+    id: ItemsIdentifiersEnum.singleTransaction
   },
   {
-    title: 'Ping & Pong (Backend)',
-    icon: IconBackend,
-    id: ItemsIdentifiersEnum.pingPongService
+    title: 'Data Transaction',
+    icon: IconBatch,
+    id: ItemsIdentifiersEnum.dataTransaction
+  },
+  {
+    title: 'Multiple Transactions',
+    icon: IconBatch,
+    id: ItemsIdentifiersEnum.multipleTransactions
+  },
+  {
+    title: '(Large) Multiple Transactions',
+    icon: IconBatch,
+    id: ItemsIdentifiersEnum.largeMultipleTransaction
+  },
+  {
+    title: 'WalletConnect Ping',
+    icon: IconBatch,
+    id: ItemsIdentifiersEnum.walletConnectPing
   },
   {
     title: 'Sign message',

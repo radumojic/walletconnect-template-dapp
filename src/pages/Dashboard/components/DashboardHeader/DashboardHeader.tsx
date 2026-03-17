@@ -3,7 +3,6 @@ import {
   SDK_DAPP_PACKAGE_LINK,
   TYPESCRIPT_LINK
 } from 'localConstants';
-
 import { DashboardHeaderTextLink } from './components/DashboardHeaderTextLink';
 
 // prettier-ignore
@@ -16,7 +15,9 @@ const styles = {
 
 export const DashboardHeader = () => (
   <div className={styles.dashboardHeaderContainer}>
-    <div className={styles.dashboardHeaderTitle}>Welcome to dApp Template</div>
+    <div className={styles.dashboardHeaderTitle}>
+      Welcome to WalletConnect dApp Template
+    </div>
 
     <div className={styles.dashboardHeaderDescription}>
       <span className={styles.dashboardHeaderDescriptionText}>

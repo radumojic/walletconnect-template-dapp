@@ -1,7 +1,7 @@
 import './styles/tailwind.css';
 import './styles/style.css';
 
-import { environment, walletConnectV2ProjectId } from 'config';
+import { environment } from 'config';
 import { ICustomProvider, InitAppType } from './lib';
 import { InMemoryProvider } from './provider/inMemoryProvider';
 
@@ -18,6 +18,10 @@ const providers: ICustomProvider[] = [
 // Option 1: Add providers using the `window.providers` array
 (window as any).multiversx.providers = providers;
 
+const walletConnectV2ProjectId = import.meta.env.VITE_APP_PROJECT_ID;
+// const walletConnectV2RelayAddresses = [import.meta.env.VITE_APP_RELAY_URL];
+const walletConnectDeepLink = import.meta.env.VITE_APP_DEEPLINK_URL ?? '';
+
 export const config: InitAppType = {
   storage: { getStorageCallback: () => sessionStorage },
   dAppConfig: {
@@ -26,7 +30,12 @@ export const config: InitAppType = {
     theme: 'mvx:dark-theme',
     providers: {
       walletConnect: {
-        walletConnectV2ProjectId
+        walletConnectV2ProjectId,
+        //        walletConnectV2RelayAddresses,
+        walletConnectDeepLink,
+        walletConnectV2Options: {
+          logger: 'debug'
+        }
       }
     }
   }
